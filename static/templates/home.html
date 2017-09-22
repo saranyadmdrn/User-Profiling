@@ -1,0 +1,27 @@
+<h1>Welcome {{name}}!</h1>
+<form>
+	<div ng-controller="UserLogController">
+	  <button ng-click='events()'>View Event Logs</button>
+	</div>
+
+	<div ng-controller="LogoutController">
+		<button ng-click='stackoverflow()'>stackoverflow</button>
+	  <button ng-click='logout()'>Logout</button>
+
+	</div>
+
+	<div ng-controller="ReasonsController">
+		<button ng-click='reasons()'>Why Logged these events?</button>
+	</div>
+	<div ng-repeat="items in details">
+	    <ul>
+	      <li ng-repeat="i in items">{{i}}</li>
+	    </ul>
+	  </div>
+
+	
+
+	
+
+
+</form>

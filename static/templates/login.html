@@ -1,0 +1,17 @@
+<div>
+  <h1>Login</h1>
+  <div ng-show="error">{{errorMessage}}</div>
+  <form ng-submit="login()">
+    <div >
+      <label>Name</label>
+      <input type="text" name="name" ng-model="loginForm.name" required>
+    </div>
+    <div>
+      <label>Password</label>
+        <input type="password" name="password" ng-model="loginForm.password" required>
+      </div>
+      <div>
+        <button type="submit">Login</button>
+      </div>
+  </form>
+</div>

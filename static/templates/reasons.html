@@ -1,0 +1,82 @@
+
+<div>
+<button type="button" ng-click=reasonsBack()>Back</button>
+</div>
+<table border = "1">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Type of event</th>
+            <th>why?</th>
+           
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Summary of questions</td>
+            <td>Each question that the user clicks on is logged along with the link to the question. This event is logged in order to understand what the user is trying to solve/learn. With this we can provide him with suggestions to other similar questions which would solve his quest.</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>Login</td>
+            <td>Click on the Login is logged whenever the user is trying to login. He might be logging in to read full comments/post/vote. With this we understand that he is interested to contribute something to the thread.</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>Sign Up</td>
+            <td>An event is logged when the user is signing up on the stackoverflow page. This event does reflect the interest of the user to get more information or contribute more to stackoverflow.</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Ask Question</td>
+            <td>Whenever the user is asking a question, we log this event in order to understand his current concern and can suggest him with similar posts which can answer his question.</td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td>Question Tags</td>
+            <td>Tags for each question are logged when the user clicks on it. With this it is possible to identify the questions that are interesting or that is relevant.</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>User Details</td>
+            <td>An event is logged whenever the user checkes another user profile. With this we could match similarities between both the parties and suggest topics. Also, we could also track how many times the user is being clicked upon which indicates his popularity</td>
+        </tr>
+
+        <tr>
+            <td>7</td>
+            <td>Next Page</td>
+            <td>An event is logged whenever an user clicks next page on pagination. With this we can find out how far down the pages he is going and how are these answers not satisfying/complying with his needs</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Voting a question</td>
+            <td>An event is logged whenever an user clicks on voting. The user can upvote or downvote or favotite a question. With this information we will know which type of questions might have solved his quest.</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Voting a answer</td>
+            <td>An event is logged whenever an user clicks on voting. The user can upvote or downvote or favotite or comment a answer. With this information we will know which kind of answers he is more interested and following with which we will be able to figure his interests in a particular field.</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Text Search</td>
+            <td>An event is logged whenever an user searches a text on the page. With this kind of event, we will be able to derive on which kind of topics he is most interested in at that point of time.</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Copy Content</td>
+            <td>A event is logged whenever the user is copying a text from the page. This might mean that the piece of text he copied might be the answer he is looking for or relevant to his current quest.</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Bookmarks</td>
+            <td>An event is logged whenever an user bookmarks a page. This event is logged to see what kind of topics he is bookmarking and might use it for future reference.</td>
+        </tr>
+
+    </tbody>
+</table>

@@ -1,0 +1,16 @@
+<h1>Event logs of {{name}}!</h1>
+<button type="button" ng-click=back()>Back</button>
+<table border = "1" >
+<tr>
+	<td width="100px">Type of Event</td>
+	<td width="100px">Content extracted</td>
+	<td width="100px">Link to the content</td>
+	<td width="100px">Time Logged</td>
+</tr>
+<tr ng-repeat="items in userLog">
+	<td width="100px" ng-repeat="i in items track by $index">{{i}}</td>
+</tr>
+	    <!-- <ul>
+	      <li ng-repeat="i in items">{{i}}</li>
+	    </ul> -->
+</table>
