@@ -1,4 +1,4 @@
-var app = angular.module("userApp", ["ngRoute","ngCookies"]);
+var app = angular.module("userApp", ["ngRoute","ngCookies","chart.js","ui.bootstrap"]);
     app.config(function($routeProvider) {
         $routeProvider
         .when("/", {
@@ -24,7 +24,22 @@ var app = angular.module("userApp", ["ngRoute","ngCookies"]);
             templateUrl : "static/templates/reasons.html",
             controller: "ReasonsController"
         })
-
-
+        .when("/chart", {
+            templateUrl : "static/templates/chart.html",
+            controller: "ChartController"
+        })
+        .when("/keywords", {
+            templateUrl : "static/templates/keywords.html",
+            controller: "KeywordsController"
+        })
+        .when("/votes", {
+            templateUrl : "static/templates/votes.html",
+            controller: "VotesController"
+        })
+        .when("/social", {
+            templateUrl : "static/templates/social.html",
+            controller: "SocialController"
+        })
+       
       
     });

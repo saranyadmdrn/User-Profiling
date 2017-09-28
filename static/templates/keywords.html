@@ -1,0 +1,19 @@
+<h1>Welcome,{{name}}</h1>
+<div>
+    <button type="button" class="btn btn-warning" ng-click=back()>Back</button>
+    <button ng-click="open()" class="btn btn-warning">Pattern Findings</button>
+</div>
+<div>
+    <div class="alert alert-danger" role="alert" ng-show="noLabelsAlert">No Data to show currently. See what other users are upto!</div>
+<canvas id="bar" class="chart chart-doughnut"
+  chart-data="data" chart-labels="labels" chart-title="title" chart-legend="legend" chart-colors="Color" chart-options="options" chart-hover="hoverme" chart-click="onClick">
+</canvas>
+</div>
+<div class="alert alert-success" role="alert">Check what other users are searching for<input type="checkbox" ng-model="show">
+</div>
+ <div class="alert alert-danger" role="alert" ng-show="noAllLabelsAlert">No Data to show currently.</div>
+<div ng-show="show">
+<canvas id="allBar" class="chart chart-doughnut"
+  chart-data="allData" chart-labels="allLabels" chart-title="allTitle" chart-legend="allLegend" chart-colors="allColor" chart-options="allOptions" chart-hover="allHoverme" chart-click="allOnClick">
+</canvas>
+</div>

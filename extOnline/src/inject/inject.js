@@ -3,7 +3,11 @@ $(document).ready(function() {
 	var scroll = false;
 	var CurrentScroll = 0;
 
-	
+	//tag --add user
+	//active account 
+	//bookmark
+	//most frequently searched keyword
+	//no.of upvotes -- he has found the answers and hence
 
 	/*console.log(window.location)
 	if( test.indexOf('https://stackoverflow.com/questions/') >= 0){

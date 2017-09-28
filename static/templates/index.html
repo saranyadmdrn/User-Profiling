@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.min.js"></script>
+    <script src="static/js/ui-bootstrap-tpls-0.14.3.min.js"></script>
 
-	<!-- x -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+ 	<script src="static/js/chart.js/dist/Chart.min.js"></script>
+  	<script src="static/js/angular-chart.js/dist/angular-chart.min.js"></script>
+ 
+	
+
 	
 </head>
 
 <body ng-app="userApp">
 
-<a href="/#/">Main</a>
-<a href="/#/login">Login</a>
-<a href="/#/register">Register</a>
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" href="/#/">Main</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/#/login">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/#/register">Register</a>
+  </li>
+</ul>
+
 <!-- <a href="/#/home">Home</a> -->
 <!-- <script src="controller.js"></script> -->
 <script src="static/js/app.js"></script>
@@ -23,6 +40,6 @@
 
 <div ng-view></div>
 
+
 </body>
 </html>
- 	

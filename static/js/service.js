@@ -62,7 +62,7 @@ angular.module('userApp').factory('AuthService', function ($q,$timeout,$http) {
 			    
 			    .success(function (data, status) {
 			    	//console.log(data)
-			      if(status === 200 && data.result == 'success'){
+			      if(status == 200 && data.result == 'success'){
 			      	user = true 
 			      	//console.log(data.json)
 			        deferred.resolve(data.json);
@@ -141,6 +141,107 @@ angular.module('userApp').factory('AuthService', function ($q,$timeout,$http) {
 				else{
 					return false
 				}
+			},
+
+			getAllTags : function getAllTags(){
+				var deferred = $q.defer();
+				$http.get('/getAllTags')
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
+
+			},
+
+			getTagChart : function getTagChart(name){
+				var deferred = $q.defer();
+				$http.get('/getTagChart',{name : name})
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						//console.log(data.json);
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
+
+			},
+
+			getKeyWords : function getKeyWords(name){
+				var deferred = $q.defer();
+				//console.log(name);
+				$http.get('/getKeyWords?name='+name)
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						//console.log(data.json);
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
+			},
+
+			getAllKeyWords : function getAllKeyWords(){
+				var deferred = $q.defer();
+				$http.get('/getAllKeyWords?name='+name)
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						//console.log(data.json);
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
+			},
+			getVotes : function getVotes(name){
+				var deferred = $q.defer();
+				$http.get('/getVotes?name='+name)
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						//console.log(data.json);
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
+			},
+
+			getAllVotes : function getAllVotes(){
+				var deferred = $q.defer();
+				$http.get('/getAllVotes?name='+name)
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						//console.log(data.json);
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
 			}
+
+
+
+
         }
     })

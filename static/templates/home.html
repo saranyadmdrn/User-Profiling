@@ -1,27 +1,37 @@
 <h1>Welcome {{name}}!</h1>
-<form>
-	<div ng-controller="UserLogController">
-	  <button ng-click='events()'>View Event Logs</button>
+<div>
+	<div ng-controller="UserLogController" style="float:left;margin-right: 10px">
+	  <button class="btn btn-primary" ng-click='events()'>View Event Logs</button>
 	</div>
 
-	<div ng-controller="LogoutController">
-		<button ng-click='stackoverflow()'>stackoverflow</button>
-	  <button ng-click='logout()'>Logout</button>
-
+	<div ng-controller="ReasonsController" style="float:left;margin-right: 10px">
+		<button class="btn btn-primary" ng-click='reasons()'>Why Logged these events?</button>
 	</div>
 
-	<div ng-controller="ReasonsController">
-		<button ng-click='reasons()'>Why Logged these events?</button>
+	<div ng-controller="SocialController" style="float:left;margin-right: 10px">
+		<button class="btn btn-primary" ng-click='social()'>Social Visualization</button>
 	</div>
-	<div ng-repeat="items in details">
-	    <ul>
+
+	<div ng-controller="LogoutController" style="float:left;margin-right: 10px">
+		<button class="btn btn-primary" ng-click='stackoverflow()'>stackoverflow</button>
+	    <button class="btn btn-primary" ng-click='logout()'>Logout</button>
+
+	</div>
+	<!-- <div ng-controller="ChartController">
+		<button ng-click='chart()'>Social Visualization</button>
+	</div> -->
+</div>
+	
+
+<table class="table table-striped" border = "1" >
+<tr>
+	<td width="100px"><b>Event</b></td>
+	<td width="100px"><b>Time</b></td>
+</tr>
+<tr ng-repeat="items in details">
+	<td width="100px" ng-repeat="i in items">{{i}}</td>
+</tr>
+	    <!-- <ul>
 	      <li ng-repeat="i in items">{{i}}</li>
-	    </ul>
-	  </div>
-
-	
-
-	
-
-
-</form>
+	    </ul> -->
+</table>
