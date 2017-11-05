@@ -1,0 +1,200 @@
+
+<style>
+#search {
+    float: right;
+    margin-top: 9px;
+    width: 250px;
+}
+
+.search {
+    padding: 5px 0;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+    float: left;
+    line-height: 22px;
+}
+
+    .search input {
+        position: absolute;
+        width: 0px;
+        float: Left;
+        margin-left: 210px;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.7s ease-in-out;
+        transition: all 0.7s ease-in-out;
+        height: 30px;
+        line-height: 18px;
+        padding: 0 2px 0 2px;
+        border-radius:1px;
+    }
+
+        .search input, .search input:focus {
+            width: 200px;
+            margin-left: 0px;
+        }
+
+.btn {
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    border-radius:1px;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+
+<script>
+// Get the modal
+
+</script>
+
+
+<button id="myBtn">how content is indexed and what method used</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p class="lead">How Crawling?</p>
+      <ul>
+        <li> https://docs.oracle.com/javase/tutorial/ and https://en.wikibooks.org/wiki/Java_Programming have been crawled. </li>
+        <li> Scrapy is used for crawling the website. It scrapes the content on the page and stores it into a csv file.</li>
+        <li> Scrapy first scrapes all the links on the main page. Then, it iterates through each link. Under each link, the subsections of the
+             page is scraped separately.</li>
+        <li> The csv file stores the url of the page where the content is present, the topic under which the content appears and the content</li>
+      </ul>
+
+      <p class="lead">How Indexing?</p>
+      <ul>
+        <li> Elastic search is used for indexing the crawled content.</li>
+        <li> The csv file generated from crawling is used for indexing. </li>
+        <li> The script will populate the elasticsearch index from the file. Index are created on subsections of the page that has been crawled. </li>
+        <li> bulk() api helpers are used to index these large datasets. </li>
+        <li> bulk() api helper consumes an iterator of actions and sends them to elasticsearch in chunks. </li>
+        <li> When a search is made, elasticsearch is queried to return all the relevant content. </li>
+      </ul>
+  </div>
+<br>
+</div>
+<br>
+
+<div>
+  <span><p><b> Click here to crawl data for the first time--></b><button ng-click="scrapy()" ng-disabled="disable"> RUN CRAWLER </button></p></span>
+</div>
+
+<div ng-show="loading">
+  <p> Loading please wait for 1 minute....Do not click any button or Refresh the page</p>
+</div>
+
+<div>
+  <span><p><b>If already crawled.. Click here to show the recommender system--></b><button ng-click="showRecommender()">Recommender System</button></button></p></span>
+</div>
+<div ng-show="disable">
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="I was presented with this question in an end of module open book exam today and found myself lost. i was reading Head first Javaand both definitions seemed to be exactly the same. i was just wondering what the MAIN difference was for my own piece of mind. i know there are a number of similar questions to this but, none i have seen which provide a definitive answer.Thanks, Darren">Post 1</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="Inheritance is when a 'class' derives from an existing 'class'.So if you have a Person class, then you have a Student class that extends Person, Student inherits all the things that Person has.There are some details around the access modifiers you put on the fields/methods in Person, but that's the basic idea.For example, if you have a private field on Person, Student won't see it because its private, and private fields are not visible to subclasses.Polymorphism deals with how the program decides which methods it should use, depending on what type of thing it has.If you have a Person, which has a read method, and you have a Student which extends Person, which has its own implementation of read, which method gets called is determined for you by the runtime, depending if you have a Person or a Student.It gets a bit tricky, but if you do something likePerson p = new Student();p.read();the read method on Student gets called.Thats the polymorphism in action.You can do that assignment because a Student is a Person, but the runtime is smart enough to know that the actual type of p is Student.Note that details differ among languages.You can do inheritance in javascript for example, but its completely different than the way it works in Java.">Post 2</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="Polymorphism: The ability to treat objects of different types in a similar manner.Example: Giraffe and Crocodile are both Animals, and animals can Move.If you have an instance of an Animal then you can call Move without knowing or caring what type of animal it is.Inheritance: This is one way of achieving both Polymorphism and code reuse at the same time.Other forms of polymorphism:There are other way of achieving polymorphism, such as interfaces, which provide only polymorphism but no code reuse (sometimes the code is quite different, such as Move for a Snake would be quite different from Move for a Dog, in which case an Interface would be the better polymorphic choice in this case.In other dynamic languages polymorphism can be achieved with Duck Typing, which is the classes don't even need to share the same base class or interface, they just need a method with the same name.Or even more dynamic like Javascript, you don't even need classes at all, just an object with the same method name can be used polymorphically.">Post 3</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="I found out that the above piece of code is perfectly legal in Java. I have the following questions. ThanksAdded one more question regarding Abstract method classes. public class TestClass{public static void main(String[] args) {TestClass t = new TestClass();}private static void testMethod(){abstract class TestMethod{int a;int b;int c;abstract void implementMe();}class DummyClass extends TestMethod{void implementMe(){}}DummyClass dummy = new DummyClass();}}">Post 4</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="In java it's a bit difficult to implement a deep object copy function. What steps you take to ensure the original object and the cloned one share no reference?">Post 5</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="You can make a deep copy serialization without creating some files. Copy: Restore: ByteArrayOutputStream bos = new ByteArrayOutputStream();ObjectOutputStream oos = new ObjectOutputStream(bos);oos.writeObject(object);oos.flush();oos.close();bos.close();byte[] byteData = bos.toByteArray();; ByteArrayInputStream bais = new ByteArrayInputStream(byteData);(Object) object = (Object) new ObjectInputStream(bais).readObject();">Post 6</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="Java has the ability to create classes at runtime. These classes are known as Synthetic Classes or Dynamic Proxies. See for more information. Other open-source libraries, such as and also allow you to generate synthetic classes, and are more powerful than the libraries provided with the JRE. Synthetic classes are used by AOP (Aspect Oriented Programming) libraries such as Spring AOP and AspectJ, as well as ORM libraries such as Hibernate.">Post 7</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title="A safe way is to serialize the object, then deserialize.This ensures everything is a brand new reference.about how to do this efficiently. Caveats: It's possible for classes to override serialization such that new instances are created, e.g. for singletons.Also this of course doesn't work if your classes aren't Serializable.">Post 8</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title=" comment this code /*if (savedinstancestate == null) {     getsupportfragmentmanager().begintransaction()             .add(r.id.container  new placeholderfragment())             .commit(); }*/ ">Post 9</button>
+
+<button ng-click="getValue($event)" data-toggle="tooltip" data-placement="top" title='in a class i can have as many constructors as i want with different argument types. i made all the constructors as private it didnt give any error because my implicit default constructor was public but when i declared my implicit default constructor as private then its showing an error while extending the class.  why?this works fine this can not be inherited. public class demo4  { private string name;     private int age;     private double sal;      private demo4(string name  int age) { this.name=name;         this.age=age;        }      demo4(string name) {         this.name=name;     }      demo4() {  this(\"unknown\"  20); this.sal=2000;}      void show(){         system.out.println(\"name\"+name);         system.out.println(\"age: \"+age);     } }  public class demo4  {     private string name;     private int age;     private double sal;      private demo4(string name  int age) {         this.name=name;         this.age=age;     }      demo4(string name) {         this.name=name;     }      private demo4() {         this(\"unknown\"  20);         this.sal=2000;     }      void show() {         system.out.println(\"name\"+name);         system.out.println(\"age: \"+age);     } }'>Post 10</button>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Recommender system</h1>
+        </div>
+    </div>
+    
+
+
+    <div class="container">
+  <div class="row">
+    <h3><b>Click any post above and click search OR Do custom search</b></h3>
+        <div class="search">
+<input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchString" />
+ <button type="submit" class="btn btn-primary btn-sm" ng-click="search()">Search</button>
+</div>
+
+  </div>
+  
+</div>
+
+</div>
+<div>
+    <p class="lead">{{searchString}}</p>
+  </div>
+<div>
+  <table ng-show = buttonClicked class="table table-striped" border = "1" >
+<tr>
+  <td width="100px"><b>URL</b></td>
+  <td width="100px"><b>Topic</b></td>
+  <td width="100px"><b>Content</b></td>
+</tr>
+<tr ng-repeat="items in searchResults">
+  <td width="100px" ng-repeat="i in items track by $index">{{i}}</td>
+</tr>
+      
+</table>
+</div>
+</div>
+
+
+
+

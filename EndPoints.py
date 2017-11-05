@@ -10,6 +10,16 @@ from flask import jsonify
 import pandas as pd
 import collections
 import rake
+from elasticsearch import helpers, Elasticsearch
+import csv
+import sys
+import json
+import re
+import requests
+import os
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 app = Flask(__name__)
 DATABASE = 'database.db'
@@ -110,10 +120,10 @@ def login():
 			data = {"name" :  name,
 					
 					"result" : "success"}
-		 	res = json.dumps(data)
-		 	resp = Response(res,status=200,mimetype='application/json')
-		 	resp.set_cookie(b'userName' , name)
-		 	return resp
+			res = json.dumps(data)
+			resp = Response(res,status=200,mimetype='application/json')
+			resp.set_cookie(b'userName' , name)
+			return resp
 
 		else: #have logged in before
 			#print('many times')
@@ -137,9 +147,9 @@ def login():
 					 "result" : "success"}
 			res = json.dumps(data)
 			#print(res)
-	 		resp = Response(res,status=200,mimetype='application/json')
-	 		resp.set_cookie('userName' , name)
-	 		return resp
+			resp = Response(res,status=200,mimetype='application/json')
+			resp.set_cookie('userName' , name)
+			return resp
 
 
 		# query = "SELECT name,password FROM userDetails where events = 'register' and name ='" + name + "' and password = '" + password + "'"
@@ -306,7 +316,6 @@ def getTagChart():
 	listName = []
 	for row in resultNames:
 		listName.append(str(row[0]))
-	print listName
 
 	select = "SELECT COUNT(*) FROM userLogs"
 	cursor.execute(select)
@@ -335,7 +344,7 @@ def getTagChart():
    			d = {}
    			d[row[1]] = row[2]
 
- 	dictList.append(d)
+	dictList.append(d)
  	#print dictList
 	df = pd.DataFrame(dictList,index=listName).fillna(0)
 	df = df.astype(int)
@@ -349,7 +358,7 @@ def getTagChart():
 	temp = json.dumps(temp)
 
 
- 	data = {"json" : temp,
+	data = {"json" : temp,
 			"result" : "success"}
 	res = json.dumps(data)
 	resp = Response(res,status=200,mimetype='application/json')
@@ -505,6 +514,54 @@ def getAllVotes():
 	res = json.dumps(data)
 	resp = Response(res,status=200,mimetype='application/json')
 	return resp
+
+@app.route("/indexToES",methods=['GET'])
+def indexToES():
+	es = Elasticsearch()
+	es.indices.delete(index='recommender-index', ignore=[400, 404])
+	with open('ParsedData.csv') as f:
+	    reader = csv.DictReader(f)
+	    helpers.bulk(es, reader, index='recommender-index', doc_type='recommender-type')
+
+	data = {"result" : "success"}
+	res = json.dumps(data)
+	resp = Response(res,status=200,mimetype='application/json')
+	return resp
+
+@app.route("/search",methods=['GET'])
+def search():
+    query = request.args.get('query')
+
+    es = Elasticsearch()
+    term = re.sub('[^A-Za-z0-9]+', ' ', query)
+    #print term
+    res = es.search(index='recommender-index', body={"query": {"query_string": {"query":term}}})
+    #print("Got %d Hits:" % res['hits']['total'])
+    
+    data = []
+    for hit in res['hits']['hits']:
+    	result = {}
+    	result['URL'] = hit["_source"]["URL"]
+    	if(len(hit["_source"]["Subtitle"]) <= 0):
+    		result['Topic'] = hit["_source"]["Title"]
+    	else:
+    		result['Topic'] = hit["_source"]["Subtitle"]
+    	result['Recommended'] = hit["_source"]["Description"]
+    	data.append(result)
+
+    data = {"json" : data,
+			"result" : "success"}
+    res = json.dumps(data)
+    resp = Response(res,status=200,mimetype='application/json')
+    return resp
+
+@app.route("/scrapy",methods=['POST'])
+def scrapy():
+    os.system('python javascraper\javascraper\spiders\javabot.py')
+    data = {"result" : "success"}
+    res = json.dumps(data)
+    resp = Response(res,status=200,mimetype='application/json')
+    return resp
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0',port='8082')

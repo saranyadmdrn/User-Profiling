@@ -40,6 +40,9 @@ var app = angular.module("userApp", ["ngRoute","ngCookies","chart.js","ui.bootst
             templateUrl : "static/templates/social.html",
             controller: "SocialController"
         })
-       
+        .when("/search", {
+            templateUrl : "static/templates/search.html",
+            controller: "SearchController"
+        })      
       
     });

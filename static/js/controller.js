@@ -949,3 +949,109 @@ angular.module("userApp")
 
 
 }]);
+
+
+angular.module('userApp').controller('SearchController',['$cookies','$scope', '$location', 'AuthService',
+  function ($cookies,$scope, $location, AuthService) {
+    first = true;
+    firstClick = true;
+    $scope.disable = false;
+    $scope.loading = false;
+    
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+
+    $scope.showRecommender = function(){
+      $scope.disable = true;
+    }
+
+    $scope.scrapy = function(){
+      if(!$scope.disable){
+          //console.log("run crawler");
+          $scope.loading = true;
+          AuthService.scrapy()
+            .then(function (data){
+              //console.log("scrapping successfgul")
+              indexToES();
+              $scope.loading = false;
+              $scope.disable = true;
+          
+        })
+        .catch(function(){
+
+        })
+          
+        }
+      else{
+        //console.log("crawler ran");
+      }
+    }
+
+    indexToES = function(){
+      if(first){
+          //console.log("indexing");
+          first = false;
+          AuthService.indexToES()
+            .then(function (data){
+
+              //console.log("indeexing successfgul");
+          
+        })
+        .catch(function(){
+
+        })
+          
+        }
+      else{
+        //console.log("already indexed");
+      }
+      
+    }
+
+    $scope.getValue = function(e){
+      $scope.searchString = e.currentTarget.title
+      $scope.buttonClicked = false
+    }
+
+    $scope.search = function(){
+      $scope.buttonClicked = true;
+      query = $scope.searchString;
+      //console.log(query);
+      if(query.length > 1){
+        //console.log("fetching from es");
+         AuthService.search(query)
+            .then(function (data){
+              $scope.searchResults = data;
+              //console.log($scope.searchResults)
+        })
+        .catch(function(){
+
+        })
+      }
+    }
+
+}]);

@@ -238,7 +238,55 @@ angular.module('userApp').factory('AuthService', function ($q,$timeout,$http) {
 				})
 
 				return deferred.promise;
-			}
+			},
+
+			scrapy : function scrapy(){
+				var deferred = $q.defer();
+				$http.post('/scrapy')
+				.success(function(data,status){
+					if(status == 200 && data.result == 'success'){
+						deferred.resolve(data.json);
+					}
+					else{
+						deferred.reject();
+					}
+				})
+
+				return deferred.promise;
+
+			},
+
+			indexToES : function indexToES(){
+				var deferred = $q.defer();
+
+			  $http.get('/indexToES')
+			    
+			    .success(function (data, status) {
+			      if(status === 200 && data.result == 'success'){
+			        deferred.resolve(data.json);
+			      } 
+			      else {
+			        deferred.reject();
+			      }
+			    })
+			  return deferred.promise;
+			},
+
+			search : function search(){
+				var deferred = $q.defer(query);
+			  $http.get('/search?query='+query)		    
+			    .success(function (data, status) {
+			      if(status === 200 && data.result == 'success'){
+			      	//console.log(data.json);
+			        deferred.resolve(data.json);
+			      } 
+			      else {
+			        deferred.reject();
+			      }
+			    })
+			  return deferred.promise;
+
+			},
 
 
 

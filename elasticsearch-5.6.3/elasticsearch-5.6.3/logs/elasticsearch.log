@@ -1,0 +1,9 @@
+[2017-10-31T08:41:12,363][INFO ][o.e.c.m.MetaDataDeleteIndexService] [KmSaCZk] [recommender-index/TfI1QnrGQjWnzObV-AVgBQ] deleting index
+[2017-10-31T08:41:13,159][INFO ][o.e.c.m.MetaDataCreateIndexService] [KmSaCZk] [recommender-index] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2017-10-31T08:41:14,185][INFO ][o.e.c.m.MetaDataMappingService] [KmSaCZk] [recommender-index/zwxLpnIASnKDqA0SBmurZg] create_mapping [recommender-type]
+[2017-10-31T08:47:45,427][INFO ][o.e.c.m.MetaDataDeleteIndexService] [KmSaCZk] [recommender-index/zwxLpnIASnKDqA0SBmurZg] deleting index
+[2017-10-31T08:47:45,936][INFO ][o.e.c.m.MetaDataCreateIndexService] [KmSaCZk] [recommender-index] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2017-10-31T08:47:46,950][INFO ][o.e.c.m.MetaDataMappingService] [KmSaCZk] [recommender-index/qP0-8U3xTFu0b7qVLB_VgA] create_mapping [recommender-type]
+[2017-10-31T08:52:46,527][INFO ][o.e.c.m.MetaDataDeleteIndexService] [KmSaCZk] [recommender-index/qP0-8U3xTFu0b7qVLB_VgA] deleting index
+[2017-10-31T08:52:46,790][INFO ][o.e.c.m.MetaDataCreateIndexService] [KmSaCZk] [recommender-index] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2017-10-31T08:52:48,209][INFO ][o.e.c.m.MetaDataMappingService] [KmSaCZk] [recommender-index/9yg5XBJBRkG_GQxhJCiasA] create_mapping [recommender-type]

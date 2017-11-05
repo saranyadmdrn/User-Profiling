@@ -4,6 +4,7 @@
 <button ng-click="open()" class="btn btn-warning">Pattern Findings</button></div>
 <div>
 <div class="alert alert-danger" role="alert" ng-show="noTagsAlert">No Data to show currently.</div>
+<div class="col-md-8 col-lg-8">
 <canvas id="canvas" class="chart chart-bar"
   chart-data="data" chart-labels="labels" chart-series="series" chart-legend="legend" chart="chart"
   chart-click="onClick">
@@ -11,9 +12,11 @@
 
 <button class="btn btn-warning" ng-click="addTag()">Add Tag</button>
 <button class="btn btn-warning" ng-click="removeTag()">Remove Tag</button>
+<div class="alert alert-danger" role="alert" ng-show="chartAlert">No Tags to display</div>
+</div>
 </div>
 
-<div class="alert alert-danger" role="alert" ng-show="chartAlert">No Tags to display</div>
+
 <!-- <div ng-show="showUsers">No Users to display</div> -->
 <!-- <button ng-click="addUser()">Add User</button>
 <button ng-click="removeUser()">Remove User</button> -->
